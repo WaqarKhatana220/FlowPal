@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 ENV_FILE=.env
 
 DEVOPS_DIR=flowpal_devops
