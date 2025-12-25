@@ -12,7 +12,7 @@ services: ## Start infra services only
 
 
 .PHONY: dev-run
-dev-run: services ## Start web + worker + beat in dev mode
+dev-run: services ## Start web in dev mode
 	docker compose --env-file $(ENV_FILE) \
 	  -f $(DEVOPS_DIR)/docker-compose.services.yml \
 	  -f $(DEVOPS_DIR)/docker-compose.yml \
@@ -20,7 +20,7 @@ dev-run: services ## Start web + worker + beat in dev mode
 	  up web
 
 .PHONY: dev-recreate
-dev-recreate: services ## Recreate web + worker + beat
+dev-recreate: services ## Recreate web
 	docker compose --env-file $(ENV_FILE) \
 	  -f $(DEVOPS_DIR)/docker-compose.services.yml \
 	  -f $(DEVOPS_DIR)/docker-compose.yml \
@@ -42,7 +42,7 @@ down: ## Stop all containers
 
 
 .PHONY: logs
-logs: ## Tail logs of web, worker, beat
+logs: ## Tail logs of web
 	docker compose --env-file $(ENV_FILE) \
 	  -f $(DEVOPS_DIR)/docker-compose.services.yml \
 	  -f $(DEVOPS_DIR)/docker-compose.yml \
