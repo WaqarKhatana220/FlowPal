@@ -165,6 +165,7 @@ secret_key.txt
 # Docker
 .dockerignore
 docker-compose.override.yml
+docker-compose.override.dev.yml
 
 # Node modules (if using frontend tools)
 node_modules/

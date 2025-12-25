@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  web:
+    image: flowpal:latest
+    container_name: flowpal_server
+    env_file:
+      - ../.env
+    command: gunicorn flowpal_project.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DJANGO_DB_HOST: db
+      DJANGO_DB_NAME: ${POSTGRES_DB}
+      DJANGO_DB_USER: ${POSTGRES_USER}
+      DJANGO_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      REDIS_URL: redis://redis:6379/0
+
+  # worker:
+  #   image: flowpal:latest
+  #   container_name: flowpal_celery
+  #   env_file:
+  #     - ../.env
+  #   command: celery -A flowpal_project worker -l info
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   environment:
+  #     DJANGO_DB_HOST: db
+  #     DJANGO_DB_NAME: ${POSTGRES_DB}
+  #     DJANGO_DB_USER: ${POSTGRES_USER}
+  #     DJANGO_DB_PASSWORD: ${POSTGRES_PASSWORD}
+  #     REDIS_URL: redis://redis:6379/0
+
+  # beat:
+  #   image: flowpal:latest
+  #   container_name: flowpal_celery_beat
+  #   env_file:
+  #     - ../.env
+  #   command: celery -A flowpal_project beat -l info
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   environment:
+  #     DJANGO_DB_HOST: db
+  #     DJANGO_DB_NAME: ${POSTGRES_DB}
+  #     DJANGO_DB_USER: ${POSTGRES_USER}
+  #     DJANGO_DB_PASSWORD: ${POSTGRES_PASSWORD}
+  #     REDIS_URL: redis://redis:6379/0
