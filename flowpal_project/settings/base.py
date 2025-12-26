@@ -40,10 +40,12 @@ THIRD_PARTY_APPS = [
 ]
 
 FLOWPAL_APPS = [
-    
+    'user_auth'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + FLOWPAL_APPS
+
+AUTH_USER_MODEL = "user_auth.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
