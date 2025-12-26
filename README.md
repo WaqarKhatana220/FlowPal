@@ -29,6 +29,13 @@ cp .env.example .env
 # Edit .env with your settings
 ```
 
+### 3. Configure `docker-compose.override.dev.yml`
+For running the dev server, you need a `docker-compose.override.dev.yml` file to use Makefile commands. Create one based on the example:
+
+```bash
+cp docker-compose.override.dev.yml.example docker-compose.override.dev.yml
+```
+
 ### 3. Build Docker Image
 ```bash
 make image
