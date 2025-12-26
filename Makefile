@@ -4,6 +4,9 @@ ENV_FILE=.env
 
 DEVOPS_DIR=flowpal_devops
 
+help:
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+
 .PHONY: services
 services: ## Start infra services only
 	docker compose --env-file $(ENV_FILE) \
@@ -59,5 +62,5 @@ shell: ## Enter Django web container
 	  exec web bash
 
 .PHONY: migrate
-migrate: shell
+migrate: shell ## Run Django migrations
 	python manage.py migrate
