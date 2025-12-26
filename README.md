@@ -33,29 +33,29 @@ cp .env.example .env
 For running the dev server, you need a `docker-compose.override.dev.yml` file to use Makefile commands. Create one based on the example:
 
 ```bash
-cp docker-compose.override.dev.yml.example docker-compose.override.dev.yml
+cp flowpal_devops/docker-compose.override.dev.yml.example flowpal_devops/docker-compose.override.dev.yml
 ```
 
-### 3. Build Docker Image
+### 4. Build Docker Image
 ```bash
 make image
 ```
 
-### 4. Start Services
+### 5. Start Services
 
 Start the database and Redis services:
 ```bash
 make services
 ```
 
-### 5. Start Development Server
+### 6. Start Development Server
 ```bash
 make dev-run
 ```
 
 Your application will be available at `http://localhost:8000`.
 
-### 6. Run Migrations
+### 7. Run Migrations
 
 Access the server container and run Django migrations:
 ```bash
@@ -65,6 +65,18 @@ make shell
 Inside the container:
 ```bash
 python manage.py migrate
+```
+
+### 8. Create superuser
+
+Access the server container and create a superuser to login with:
+```bash
+make shell
+```
+
+Inside the container:
+```bash
+python manage.py createsuperuser
 ```
 
 ---
